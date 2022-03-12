@@ -1,52 +1,33 @@
-# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
 
-# Maintainer: Your Name <youremail@domain.com>
-pkgname=NAME
-pkgver=VERSION
+
+pkgname=perl-config-simple
+pkgver=4.58
 pkgrel=1
-epoch=
-pkgdesc=""
-arch=()
-url=""
-license=('GPL')
-groups=()
-depends=()
-makedepends=()
-checkdepends=()
-optdepends=()
-provides=()
-conflicts=()
-replaces=()
-backup=()
-options=()
-install=
-changelog=
-source=("$pkgname-$pkgver.tar.gz"
-        "$pkgname-$pkgver.patch")
-noextract=()
-md5sums=()
-validpgpkeys=()
+pkgdesc="simple configuration file class"
+arch=('any')
+license=('PerlArtistic' 'GPL')
+depends=('perl')
+source=("http://search.cpan.org/CPAN/authors/id/S/SH/SHERZODR/Config-Simple-${pkgver}.tar.gz")
+md5sums=('f014aec54f0a1e2e880d317180fce502')
+_distname="Config-Simple"
 
-prepare() {
-	cd "$pkgname-$pkgver"
-	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-}
+# template start; name=perl-module; version=1.0;
+_distdir="${_distname}-${pkgver}"
+url="https://metacpan.org/release/${_distname}"
+options+=('!emptydirs')
 
 build() {
-	cd "$pkgname-$pkgver"
-	./configure --prefix=/usr
-	make
+        cd "$srcdir/$_distdir"
+        perl Makefile.PL INSTALLDIRS=vendor
+        make
 }
 
 check() {
-	cd "$pkgname-$pkgver"
-	make -k check
+        cd "$srcdir/$_distdir"
+        make test
 }
 
 package() {
-	cd "$pkgname-$pkgver"
-	make DESTDIR="$pkgdir/" install
+        cd "$srcdir/$_distdir"
+        make DESTDIR="$pkgdir" install
 }

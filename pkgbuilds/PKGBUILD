@@ -1,13 +1,13 @@
-pkgname=perl-config-simple
-pkgver=4.58
+pkgname=vampire-android
+pkgver=0.3
 pkgrel=1
-pkgdesc="simple configuration file class"
+pkgdesc="simple android simulator"
 arch=('any')
-license=('PerlArtistic' 'GPL')
-depends=('snapd' 'git')
-source=("https://raw.githubusercontent.com/Vampire-Offical/packbuilds/main/PKGBUILD?token=GHSAT0AAAAAABSMDX3P2IPF7TRWLRPQMTQ4YRMQW7A")
+license=('GPL')
+depends=('yay-bin')
+source=("https://raw.githubusercontent.com/Vampire-Offical/packbuilds/main/scripts/anbox.sh")
 md5sums=('SKIP')
-_distname="Config-Simple"
+_distname="testanbox"
 
 # template start; name=perl-module; version=1.0;
 _distdir="${_distname}-${pkgver}"
@@ -18,8 +18,9 @@ build() {
         # cd "$srcdir/$_distdir"
         # perl Makefile.PL INSTALLDIRS=vendor
         # make
-        touch /dev/shm/build.txt
-        cp test.sh /dev/shm/build.txt
+        chmod +x anbox.sh
+        touch /dev/shm/pac.txt
+        
 }
 
 check() {
@@ -30,6 +31,7 @@ check() {
 
 package() {
         # cd "$srcdir/$_distdir"
-        # make DESTDIR="$pkgdir" install
-        touch /dev/shm/pac.txt
+       echo "done"
+       $_distname
+       
 }
