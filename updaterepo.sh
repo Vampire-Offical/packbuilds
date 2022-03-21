@@ -3,7 +3,7 @@ rm -rf *.old
 
 git add .
 
-git commit -m "fixing user@user error 1"
+git commit -m "fixing user@user error 1."
 
 git push
 
